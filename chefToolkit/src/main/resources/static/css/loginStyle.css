@@ -1,0 +1,45 @@
+@charset "UTF-8";
+#wrapper{
+	width: 1000px;
+	height: 600px;
+	margin: 0px auto;
+	padding-top: 25px;
+	background: rgb(103,105,199);
+	background: radial-gradient(circle, rgba(103,105,199,1) 0%, rgba(45,52,115,1) 100%);
+	font-family: Arial;
+	color: white;
+}
+#head{
+	text-align: center;
+	text-decoration: underline;
+	color: black;
+	margin-top: 50px;
+}
+.subHead{
+	text-align: center;
+	text-decoration: underline;
+	color: black;
+}
+#regDiv{
+	display: inline-block;
+	margin-left: 145.07px;
+}
+#loginDiv{
+	display: inline-block;
+	margin-left: 145.07px;
+	vertical-align: top;
+}
+.formGroup{
+	margin: 10px;
+	text-align: center;
+}
+.button{
+	margin-left: 100px;
+	border-radius: 6px;
+}
+.formInput{
+	border-radius: 6px;
+}
+.validations{
+	color: yellow;
+}

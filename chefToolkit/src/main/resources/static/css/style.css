@@ -15,7 +15,15 @@
 	color: black;
 	margin-top: 50px;
 }
-.logoutLink{
+#logoutLink{
 	color: yellow;
-	margin: 15px 0px 0px 800px;
+	margin: 15px 0px 15px 800px;
+}
+.pageLink{
+	color: yellow;
+	margin: 15px 10px;
+}
+.directoryLink{
+	color: yellow;
+	margin: 25px auto;
 }

@@ -8,17 +8,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome ${currentUser.firstName}!</title>
+<title>Welcome!</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<div id="wrapper">s
-		<a class="directoryLink" href="">Ingredients</a>
-		<a class="directoryLink" href="">Recipes</a>
-		<a class="directoryLink" href="">Add Ingredient</a>
-		<a class="directoryLink" href="">Add Recipe</a>
-		<a class="directoryLink" href="">Import Spreadsheet</a>
-		<a id="logoutLink" href="">Logout</a>
-	</div>
+	<t:wrapper>
+		<h1 id="head">Hello ${currentUser.firstName}!</h1>
+		
+	</t:wrapper>
 </body>
 </html>

@@ -21,9 +21,41 @@
 }
 .pageLink{
 	color: yellow;
-	margin: 15px 10px;
+	margin: 15px 20px ;
 }
 .directoryLink{
 	color: yellow;
 	margin: 25px auto;
+}
+#contentLinks{
+	display:inline-block;
+	width: 105px;
+	margin: 0px 447.5px;
+	text-align: center;
+}
+.directoryLink{
+	display:inline-block;
+}
+#headNav{
+	text-align: center;
+}.validations{
+	color: yellow;
+}
+.formInput{
+	margin: 10px;
+}
+#ingredient{
+	display: inline-block;
+	margin: 20px 379.26px;
+}
+#ingredientsTable{
+	display: inline-block;
+	text-align: center;
+	margin: 20px 0px 0px 310px;
+}
+.tData{
+	padding: 3px 10px;
+}
+.tLink{
+	color: yellow;
 }

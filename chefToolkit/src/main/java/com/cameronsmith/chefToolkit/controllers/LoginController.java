@@ -18,7 +18,7 @@ import com.cameronsmith.chefToolkit.services.UserService;
 import com.cameronsmith.chefToolkit.validators.UserValidator;
 
 @Controller
-public class MainController {
+public class LoginController {
 	@Autowired
 	private UserService uService;
 	@Autowired
@@ -36,7 +36,7 @@ public class MainController {
 		}
 		User newUser = this.uService.registerUser(user);
 		session.setAttribute("user_id", newUser.getId());
-		return "redirect:/welcome";
+		return "redirect:/toolbox/directory";
 	}
 	@PostMapping("/login")
 	public String loginUser(@RequestParam("loginEmail")String email, @RequestParam("loginPassword")String password, RedirectAttributes redirectAttrs, HttpSession session) {
@@ -46,9 +46,14 @@ public class MainController {
 		}
 		User user = this.uService.getByEmail(email);
 		session.setAttribute("user_id", user.getId());
-		return "redirect:/welcome";
+		return "redirect:/toolbox/directory";
 	}
-	@GetMapping("/welcome")
+	@GetMapping("/logOutUser")
+	public String logOut(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
+	@GetMapping("/toolbox/directory")
 	public String allEvents( HttpSession session, Model viewModel) {
 		Long userId = (Long)session.getAttribute("user_id");
 		if(userId == null) {
@@ -57,10 +62,5 @@ public class MainController {
 		User currentUser = this.uService.getById(userId);
 		viewModel.addAttribute("currentUser", currentUser);
 		return "index.jsp";
-	}
-	@GetMapping("/logOutUser")
-	public String logOut(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
 	}
 }

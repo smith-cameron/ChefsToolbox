@@ -12,9 +12,11 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<div id="wrapper">
 	<t:wrapper>
 		<h1 id="head">Hello ${currentUser.firstName}!</h1>
 		
 	</t:wrapper>
+	</div>
 </body>
 </html>

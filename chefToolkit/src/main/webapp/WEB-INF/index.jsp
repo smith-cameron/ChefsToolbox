@@ -12,13 +12,15 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<div id="wrapper">s
-		<a class="directoryLink" href="">Ingredients</a>
-		<a class="directoryLink" href="">Recipes</a>
-		<a class="directoryLink" href="">Add Ingredient</a>
-		<a class="directoryLink" href="">Add Recipe</a>
-		<a class="directoryLink" href="">Import Spreadsheet</a>
-		<a id="logoutLink" href="">Logout</a>
+	<div id="wrapper">
+			<a id="logoutLink" href="/logOutUser">Logout</a>
+	<h1 id="head">Welcome Chef ${currentUser.firstName}</h1>
+		<div id="contentLinks">
+			<a class="directoryLink" href="/toolbox/ingredient/">Ingredients</a>
+			<a class="directoryLink" href="/toolbox/recipe/">Recipes</a>
+			<a class="directoryLink" href="/toolbox/ingredient/create">Add Ingredient</a>
+			<a class="directoryLink" href="/toolbox/recipe/create">Add Recipe</a>
+		</div>
 	</div>
 </body>
 </html>

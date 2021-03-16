@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<nav>
-	<a class="pageLink" href="">Add Recipe</a> | <a class="pageLink" href="">Add Ingredient</a> | <a class="pageLink" href="">Recipes</a> | <a class="pageLink" href="">Ingredients</a> | <a class="pageLink" href="">Directory</a> | <a class="pageLink" href="/logOutUser">Logout</a>
+	<nav id="headNav">
+	<a class="pageLink" href="/toolbox/recipe/create">Add Recipe</a> | <a class="pageLink" href="/toolbox/ingredient/create">Add Ingredient</a> | <a class="pageLink" href="">Recipes</a> | <a class="pageLink" href="/toolbox/ingredient/">Ingredients</a> | <a class="pageLink" href="/toolbox/directory">Directory</a> | <a class="pageLink" href="/logOutUser">Logout</a>
 	</nav>
 	<jsp:doBody/>
 </body>

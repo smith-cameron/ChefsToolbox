@@ -59,7 +59,7 @@ public class RecipeController {
 		viewModel.addAttribute("currentRecipe", currentRecipe);
 		viewModel.addAttribute("ingredients", this.iService.getAll());
 		//List<RecipeItem> currentRecipeItems = currentRecipe.getIngredientsInRecipe();
-		viewModel.addAttribute("currentRecipeItems", this.riService.findByRecipeId(currentRecipe) );
+//		viewModel.addAttribute("currentRecipeItems", this.rService.);
 		return "addRecipeIng.jsp";
 	}
 	@PostMapping("/adding/{id}")

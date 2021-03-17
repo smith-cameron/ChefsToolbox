@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome!</title>
+<title>Chefs Toolkit</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -37,20 +37,16 @@
 			<thead>
 			<tr>
 			<th class="tHead">Name</th>
-			<th class="tHead">Cost</th>
-			<th class="tHead">Quantity</th>
+			<th class="tHead">Amount</th>
 			<th class="tHead">UoM</th>
-			<th class="tHead">Action</th>
+			<th class="tHead">Cost P/UoM</th>
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${currentRecipeItems.ingredientid}" var="ingredient">
+			<c:forEach items="${currentRecipe.ingredientsInRecipe}" var="ingredient">
 				<tr>
-				<td class="tData"><a class="tLink" href="/toolbox/ingredient/edit/${ingredient.id}">${ingredient.name}</a></td>
-				<td class="tData">$${ingredient.cost}</td>
-				<td class="tData">${ingredient.quantity}</td>
-				<td class="tData">${ingredient.unitOfMeasure}</td>
-				<td><a class="tLink" href="/toolbox/ingredient/delete/${ingredient.id}">Delete</a></td>
+				<td class="tData"><a class="tLink" href="/toolbox/ingredient/edit/${ingredient.id}"></a></td>
+				<td class="tData">${ingredient.amount}</td>
 				</tr>
 			</c:forEach>
 			</tbody>

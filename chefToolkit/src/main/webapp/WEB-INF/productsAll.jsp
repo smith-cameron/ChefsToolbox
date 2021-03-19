@@ -14,8 +14,8 @@
 <body>
 	<div id="wrapper">
 	<t:wrapper>
-		<h1 id="head">Ingredients</h1>
-		<div id="ingredientsTable">
+		<h1 id="head">Product Inventory</h1>
+		<div id="displayTable">
 			<table>
 			<thead>
 			<tr>
@@ -27,13 +27,13 @@
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${ingredients}" var="ingredient">
+			<c:forEach items="${products}" var="product">
 				<tr>
-				<td class="tData"><a class="tLink" href="/toolbox/ingredient/edit/${ingredient.id}">${ingredient.name}</a></td>
-				<td class="tData">$${ingredient.cost}</td>
-				<td class="tData">${ingredient.quantity}</td>
-				<td class="tData">${ingredient.unitOfMeasure}</td>
-				<td><a class="tLink" href="/toolbox/ingredient/delete/${ingredient.id}">Delete</a></td>
+				<td class="tData"><a class="tLink" href="/toolbox/ingredient/edit/${product.id}">${product.name}</a></td>
+				<td class="tData">$${product.cost}</td>
+				<td class="tData">${product.quantity}</td>
+				<td class="tData">${product.unitOfMeasure}</td>
+				<td><a class="tLink" href="/toolbox/ingredient/delete/${product.id}">Delete</a></td>
 				</tr>
 			</c:forEach>
 			</tbody>

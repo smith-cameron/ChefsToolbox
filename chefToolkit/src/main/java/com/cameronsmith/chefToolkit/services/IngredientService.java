@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cameronsmith.chefToolkit.models.Ingredient;
+import com.cameronsmith.chefToolkit.models.Recipe;
 import com.cameronsmith.chefToolkit.repositories.IngredientRepo;
 
 @Service
@@ -16,6 +17,9 @@ public class IngredientService {
 	public Ingredient createEntry(Ingredient toUpdate) {
 		return this.iRepo.save(toUpdate);
 	}
+	public Ingredient updateEntry(Ingredient toUpdate) {
+		return this.iRepo.save(toUpdate);
+	}
 	public List<Ingredient> getAll(){
 		return this.iRepo.findAll();
 	}
@@ -24,5 +28,9 @@ public class IngredientService {
 	}
 	public void deleteById(Long id) {
 		this.iRepo.deleteById(id);
+	}
+	public List<Ingredient> ingredientsInRecipe(Recipe recipe){
+		List<Ingredient> ingredients = this.iRepo.findByRecipe(recipe);
+		return ingredients;
 	}
 }

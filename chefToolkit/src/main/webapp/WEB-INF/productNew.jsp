@@ -8,14 +8,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome!</title>
+<title>Chefs Toolbox</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <div id="wrapper">
 	<t:wrapper>
-		<h1 id="head">Edit ${ingredient.name}</h1>
-		<form:form action="/toolbox/ingredient/edit/${ingredient.id}" method="post" modelAttribute="ingredient">
+		<h1 id="head">Create A New Product</h1>
+		<div id="formDiv">
+		<form:form action="/toolbox/product/create" method="post" modelAttribute="product">
 					<form:errors class="validations" path="name"/>
 				<div class="formGroup">
 					<form:label path="name">Name:</form:label>
@@ -28,7 +29,7 @@
 				</div>
 					<form:errors class="validations" path="quantity"/>
 				<div class="formGroup">
-					<form:label path="quantity">Quantity:</form:label>
+					<form:label path="quantity">Quantity (in UoM):</form:label>
 					<form:input class="formInput" path="quantity"/>
 				</div>
 					<form:errors class="validations" path="unitOfMeasure"/>
@@ -40,8 +41,9 @@
 						<form:option value="ea">ea</form:option>
 					</form:select>
 				</div>
-				<input class="button" type="submit" value="Update">
+				<input class="button" type="submit" value="Create">
 			</form:form>
+			</div>
 	</t:wrapper>
 	</div>
 </body>

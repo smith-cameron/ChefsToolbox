@@ -1,29 +1,25 @@
 package com.cameronsmith.chefToolkit.models;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="ingredients")
 public class Ingredient {
-//	Attributes---------------------------------------------
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -40,20 +36,17 @@ public class Ingredient {
 	protected void onUpdate(){
 		this.updatedAt = new Date();
 	}
-	@NotBlank
-	@Size(min=3, message="Must Be Over 3 Characters")
-	private String name;
 	@NotNull
 	@Column(precision=2)
-	private double cost;
-	@NotNull
-	@Column(precision=2)
-	private double quantity;
-	@NotBlank
-	private String unitOfMeasure;
+	private double amount;
 //	Table Realationships ----------------------------------
-	@OneToMany(mappedBy="ingredient", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    private List<RecipeItem> ingredientsInRecipe;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="product_id")
+    private Product product;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="recipe_id")
+    private Recipe recipe;
 //	Bean --------------------------------------------------
 	public Ingredient() {
 		
@@ -77,35 +70,24 @@ public class Ingredient {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	public String getName() {
-		return this.name;
+	public double getAmount() {
+		return this.amount;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
-	public double getCost() {
-		return this.cost;
+	public Product getProduct() {
+		return this.product;
 	}
-	public void setCost(double cost) {
-		this.cost = cost;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
-	public double getQuantity() {
-		return this.quantity;
+	public Recipe getRecipe() {
+		return this.recipe;
 	}
-	public void setQuantity(double quantity) {
-		this.quantity = quantity;
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
-	public String getUnitOfMeasure() {
-		return this.unitOfMeasure;
-	}
-	public void setUnitOfMeasure(String unitOfMeasure) {
-		this.unitOfMeasure = unitOfMeasure;
-	}
-	public List<RecipeItem> getIngredientsInRecipe() {
-		return this.ingredientsInRecipe;
-	}
-	public void setIngredientsInRecipe(List<RecipeItem> ingredientsInRecipe) {
-		this.ingredientsInRecipe = ingredientsInRecipe;
-	}
+	
 	
 }

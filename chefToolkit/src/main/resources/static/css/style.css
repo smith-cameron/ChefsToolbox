@@ -1,9 +1,9 @@
 @charset "UTF-8";
 #wrapper{
 	width: 1000px;
-	height: 600px;
+	height: fit-content;
 	margin: 0px auto;
-	padding-top: 25px;
+	padding: 25px 0px;
 	background: rgb(103,105,199);
 	background: radial-gradient(circle, rgba(103,105,199,1) 0%, rgba(45,52,115,1) 100%);
 	font-family: Arial;
@@ -48,7 +48,7 @@
 	display: inline-block;
 	margin: 20px 379.26px;
 }
-#ingredientsTable{
+#displayTable{
 	display: inline-block;
 	text-align: center;
 	margin: 20px 0px 0px 310px;
@@ -58,4 +58,26 @@
 }
 .tLink{
 	color: yellow;
+}
+#formDiv{
+	text-align: center;
+}
+.link{
+	color: yellow;
+}
+.recByProd{
+	display: inline-block;
+	margin: 20px 185px 0px 0px;
+	vertical-align: top;
+}
+.recByProd1{
+	display: inline-block;
+	margin: 20px 190px 0px 190px;
+	vertical-align: top;
+}
+#done{
+	margin: 30px 476.1px;
+}
+#recipeShowTable{
+	text-align: center;	
 }

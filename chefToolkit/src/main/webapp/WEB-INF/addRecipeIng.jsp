@@ -8,50 +8,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Chefs Toolkit</title>
+<title>Chefs Toolbox</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-	<div id="wrapper">
+<div id="wrapper">
 	<t:wrapper>
-		<h1 id="head">Adjust Ingredients In ${currentRecipe.name}</h1>
-		<form:form action="/toolbox/recipe/adding/${currentRecipe.id}" method="post" modelAttribute="recipeItem">
-		<form:hidden path="recipe" value="${currentRecipe.id}"/>
-		<div class="formGroup">
-			<form:select class="formInput" path="ingredient" >
-				<c:forEach items="${ingredients}" var="ingredient">
-					<form:option value="${ingredient.id }">${ingredient.name }</form:option>
-				</c:forEach>
-			</form:select>
-		</div>
-			<form:errors class="validations" path="amount"/>
-		<div class="formGroup">
-			<form:label path="amount">Amout:</form:label>
-			<form:input class="formInput" path="amount"/>
-		</div>
-		<input class="button" type="submit" value="Add Ingredient">
-		</form:form>
-		<h1 id="head">Ingredients In ${currentRecipe.name}</h1>
-		<div id="ingredientsTable">
-			<table>
-			<thead>
+		<h1 id="head">Find Products for ${recipe.name}</h1>
+		<div class="recByProd1">
+		<table>
+		<thead>
 			<tr>
-			<th class="tHead">Name</th>
-			<th class="tHead">Amount</th>
-			<th class="tHead">UoM</th>
-			<th class="tHead">Cost P/UoM</th>
+				<th><h2 class="subHead">Products In:</h2></th>
+				<th>Actions</th>
 			</tr>
-			</thead>
-			<tbody>
-			<c:forEach items="${currentRecipe.ingredientsInRecipe}" var="ingredient">
-				<tr>
-				<td class="tData"><a class="tLink" href="/toolbox/ingredient/edit/${ingredient.id}"></a></td>
-				<td class="tData">${ingredient.amount}</td>
-				</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${productsIn}" var="product">
+			<tr>
+				<td><a class="link" href="/toolbox/product/edit/${product.id}">${product.name}</a></td>
+				<td><a class="link" href="/${recipe.id}/${product.id}/removeproduct">Remove</a></td>
+			</tr>
 			</c:forEach>
-			</tbody>
-			</table>
+		</tbody>
+	</table>
+	</div>
+	<div class="recByProd">
+	<h2 class="subHead">Product Inventory:</h2>
+		<div >
+			<form id="inputForm" action="/toolbox/recipe/adding/${recipe.id}" method="post">
+				<div class="formDiv">
+				<select class="formInput" name="product">
+					<c:forEach items="${productsNotIn}" var="product">
+						<option value="${product.id}">${product.name}</option>
+					</c:forEach>
+				</select>
+				</div>
+				<div class="formDiv">
+				<input id="button" type="submit" value="Add"/>
+				</div>
+			</form>
 		</div>
+	</div>
+		<a href="/toolbox/recipe/"><button id="done">Done</button></a>
 	</t:wrapper>
 	</div>
 </body>

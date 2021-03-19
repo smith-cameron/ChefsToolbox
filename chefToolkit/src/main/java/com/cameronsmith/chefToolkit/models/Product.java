@@ -24,8 +24,8 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="recipes")
-public class Recipe {
+@Table(name="products")
+public class Product {
 //	Attributes---------------------------------------------
 	@Id
 	@GeneratedValue (strategy=GenerationType.IDENTITY)
@@ -48,28 +48,25 @@ public class Recipe {
 	private String name;
 	@NotNull
 	@Column(precision=2)
-	private float yield;
+	private double cost;
+	@NotNull
+	@Column(precision=2)
+	private double quantity;
 	@NotBlank
 	private String unitOfMeasure;
-	@NotNull
-	@Column(precision=2)
-	private float serving;
-	@NotNull
-	@Column(precision=2)
-	private float costPercentage;
 //	Table Realationships ----------------------------------
-	@OneToMany(mappedBy="recipe",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Ingredient> ingredientsUsed;
+	@OneToMany(mappedBy="product",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Ingredient> ingredientsMade;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "recipes_products", 
-        joinColumns = @JoinColumn(name = "recipe_id"), 
-        inverseJoinColumns = @JoinColumn(name = "product_id")
+        joinColumns = @JoinColumn(name = "product_id"), 
+        inverseJoinColumns = @JoinColumn(name = "recipe_id")
     )
-    private List<Product> productsinRec;
+    private List<Recipe> recipes;
 //	Bean --------------------------------------------------
-	public Recipe() {
+	public Product() {
 		
 	}
 //	Getter/Setter Pairs------------------------------------
@@ -97,35 +94,17 @@ public class Recipe {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public float getYield() {
-		return this.yield;
+	public double getCost() {
+		return this.cost;
 	}
-	public void setYield(float yield) {
-		this.yield = yield;
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
-	public float getServing() {
-		return this.serving;
+	public double getQuantity() {
+		return this.quantity;
 	}
-	public void setServing(float serving) {
-		this.serving = serving;
-	}
-	public float getCostPercentage() {
-		return this.costPercentage;
-	}
-	public void setCostPercentage(float costPercentage) {
-		this.costPercentage = costPercentage;
-	}
-	public List<Ingredient> getIngredients() {
-		return this.ingredientsUsed;
-	}
-	public void setIngredients(List<Ingredient> ingredients) {
-		this.ingredientsUsed = ingredients;
-	}
-	public List<Product> getProductsinRec() {
-		return this.productsinRec;
-	}
-	public void setProductsinRec(List<Product> productsinRec) {
-		this.productsinRec = productsinRec;
+	public void setQuantity(double quantity) {
+		this.quantity = quantity;
 	}
 	public String getUnitOfMeasure() {
 		return this.unitOfMeasure;
@@ -133,11 +112,26 @@ public class Recipe {
 	public void setUnitOfMeasure(String unitOfMeasure) {
 		this.unitOfMeasure = unitOfMeasure;
 	}
-	public List<Ingredient> getIngredientsUsed() {
-		return this.ingredientsUsed;
+	public List<Recipe> getRecipes() {
+		return this.recipes;
 	}
-	public void setIngredientsUsed(List<Ingredient> ingredientsUsed) {
-		this.ingredientsUsed = ingredientsUsed;
+	public void setIngredientsInRecipe(List<Recipe> recipes) {
+		this.recipes = recipes;
+	}
+	public List<Ingredient> getIngredients() {
+		return this.ingredientsMade;
+	}
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredientsMade = ingredients;
+	}
+	public void setRecipes(List<Recipe> recipes) {
+		this.recipes = recipes;
+	}
+	public List<Ingredient> getIngredientsMade() {
+		return this.ingredientsMade;
+	}
+	public void setIngredientsMade(List<Ingredient> ingredientsMade) {
+		this.ingredientsMade = ingredientsMade;
 	}
 	
 }

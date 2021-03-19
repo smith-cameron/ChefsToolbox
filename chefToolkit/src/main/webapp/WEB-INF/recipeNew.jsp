@@ -15,6 +15,7 @@
 <div id="wrapper">
 	<t:wrapper>
 		<h1 id="head">Initialize A New Recipe</h1>
+		<div id="formDiv">
 		<form:form action="/toolbox/recipe/create" method="post" modelAttribute="recipe">
 				<form:errors class="validations" path="name"/>
 			<div class="formGroup">
@@ -25,6 +26,15 @@
 			<div class="formGroup">
 				<form:label path="yield">Yield:</form:label>
 				<form:input class="formInput" path="yield"/>
+			</div>
+			<form:errors class="validations" path="unitOfMeasure"/>
+			<div class="formGroup">
+				<form:label path="unitOfMeasure">Unit Of Measure:</form:label>
+				<form:select class="formInput" path="unitOfMeasure">
+					<form:option value="oz">oz</form:option>
+					<form:option value="floz">floz</form:option>
+					<form:option value="ea">ea</form:option>
+				</form:select>
 			</div>
 				<form:errors class="validations" path="serving"/>
 			<div class="formGroup">
@@ -38,6 +48,7 @@
 			</div>
 			<input class="button" type="submit" value="Create">
 		</form:form>
+		</div>
 	</t:wrapper>
 	</div>
 </body>

@@ -15,12 +15,13 @@
 <div id="wrapper">
 	<t:wrapper>
 		<h1 id="head">Recipes</h1>
-		<div id="recipesTable">
+		<div id="displayTable">
 			<table>
 			<thead>
 			<tr>
 			<th class="tHead">Name</th>
 			<th class="tHead">Yield</th>
+			<th class="tHead"></th>
 			<th class="tHead">Serving</th>
 			<th class="tHead">Cost %</th>
 			<th class="tHead">Action</th>
@@ -29,11 +30,12 @@
 			<tbody>
 			<c:forEach items="${recipes}" var="recipe">
 				<tr>
-				<td class="tData"><a class="tLink" href="/toolbox/recipe/edit/${recipe.id}">${recipe.name}</a></td>
-				<td class="tData">$${recipe.yield}</td>
+				<td class="tData"><a class="tLink" href="/toolbox/recipe/show/${recipe.id}">${recipe.name}</a></td>
+				<td class="tData">${recipe.yield}</td>
+				<td class="tData">${recipe.unitOfMeasure}</td>
 				<td class="tData">${recipe.serving}</td>
 				<td class="tData">${recipe.costPercentage}</td>
-				<td><a class="tLink" href="/toolbox/recipe/delete/${recipe.id}">Delete</a></td>
+				<td><a class="tLink" href="/toolbox/recipe/delete/${recipe.id}">Delete</a> | <a class="tLink" href="/toolbox/recipe/edit/${recipe.id}">Edit</a></td>
 				</tr>
 			</c:forEach>
 			</tbody>

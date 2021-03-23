@@ -36,7 +36,7 @@ public class Ingredient {
 	protected void onUpdate(){
 		this.updatedAt = new Date();
 	}
-	@NotNull
+	@NotNull(message="Amount Required")
 	@Column(precision=2)
 	private double amount;
 //	Table Realationships ----------------------------------

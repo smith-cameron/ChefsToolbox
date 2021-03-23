@@ -12,4 +12,5 @@ import com.cameronsmith.chefToolkit.models.Recipe;
 public interface ProductRepo extends CrudRepository<Product, Long>{
 	List<Product> findAll();
 	List<Product> findByRecipesNotContains(Recipe recipe);
+	
 }

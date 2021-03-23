@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome!</title>
+<title>Chefs Toolkit</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>

@@ -13,13 +13,13 @@
 </head>
 <body>
 	<div id="wrapper">
-			<a id="logoutLink" href="/logOutUser">Logout</a>
 	<h1 id="head">Welcome Chef ${currentUser.firstName}</h1>
 		<div id="contentLinks">
 			<a class="directoryLink" href="/toolbox/product/">Ingredients</a>
 			<a class="directoryLink" href="/toolbox/recipe/">Recipes</a>
 			<a class="directoryLink" href="/toolbox/product/create">Add Ingredient</a>
 			<a class="directoryLink" href="/toolbox/recipe/create">Add Recipe</a>
+			<a class="directoryLink" href="/logOutUser">Logout</a>
 		</div>
 	</div>
 </body>

@@ -18,10 +18,6 @@ import com.cameronsmith.chefToolkit.services.ProductService;
 @Controller
 @RequestMapping("/toolbox/product")
 public class ProductController {
-//	@Autowired
-//	private UserService uService;
-//	@Autowired
-//	private RecipeService rService;
 	@Autowired
 	private ProductService pService;
 	

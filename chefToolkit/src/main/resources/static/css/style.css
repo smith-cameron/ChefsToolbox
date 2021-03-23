@@ -1,6 +1,6 @@
 @charset "UTF-8";
 #wrapper{
-	width: 1000px;
+	width: device-width;
 	height: fit-content;
 	margin: 0px auto;
 	padding: 25px 0px;
@@ -28,9 +28,9 @@
 	margin: 25px auto;
 }
 #contentLinks{
-	display:inline-block;
+	display: block;
 	width: 105px;
-	margin: 0px 447.5px;
+	margin: 0px 572px;
 	text-align: center;
 }
 .directoryLink{
@@ -78,6 +78,19 @@
 #done{
 	margin: 30px 476.1px;
 }
-#recipeShowTable{
+.recipeShowTable{
 	text-align: center;	
+	margin: 25px auto;
+}
+.recipeData{
+	color: black;
+	font-weight: bold;
+	padding: 2px 4px;
+}
+.tHead{
+	padding: 0px 4px;
+}
+.button{
+	display: inline-block;
+	/* text-align: center; */
 }

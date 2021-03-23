@@ -29,7 +29,7 @@
 			<tbody>
 			<c:forEach items="${products}" var="product">
 				<tr>
-				<td class="tData"><a class="tLink" href="/toolbox/ingredient/edit/${product.id}">${product.name}</a></td>
+				<td class="tData"><a class="tLink" href="/toolbox/product/edit/${product.id}">${product.name}</a></td>
 				<td class="tData">$${product.cost}</td>
 				<td class="tData">${product.quantity}</td>
 				<td class="tData">${product.unitOfMeasure}</td>

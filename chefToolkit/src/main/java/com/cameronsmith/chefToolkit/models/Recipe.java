@@ -115,12 +115,6 @@ public class Recipe {
 	public void setCostPercentage(float costPercentage) {
 		this.costPercentage = costPercentage;
 	}
-	public List<Ingredient> getIngredients() {
-		return this.ingredientsUsed;
-	}
-	public void setIngredients(List<Ingredient> ingredients) {
-		this.ingredientsUsed = ingredients;
-	}
 	public List<Product> getProductsinRec() {
 		return this.productsinRec;
 	}

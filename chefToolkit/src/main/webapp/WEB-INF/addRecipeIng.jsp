@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Chefs Toolbox</title>
+<title>Chefs Toolkit</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -43,6 +43,7 @@
 						<option value="${product.id}">${product.name}</option>
 					</c:forEach>
 				</select>
+				<input type="hidden" name="amount" value="${0.0}"></input>
 				</div>
 				<div class="formDiv">
 				<input id="button" type="submit" value="Add"/>

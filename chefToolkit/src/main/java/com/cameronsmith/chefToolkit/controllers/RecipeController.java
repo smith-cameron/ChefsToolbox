@@ -63,10 +63,11 @@ public class RecipeController {
 		return "addRecipeIng.jsp";
 	}
 	@PostMapping("/adding/{id}")
-	public String addProductToRecipe(@RequestParam("product")Long productId, @PathVariable("id")Long id) {
+	public String addProductToRecipe(@RequestParam("product")Long productId,@RequestParam("amount")double amountInput, @PathVariable("id")Long id) {
 		Product productToAdd= this.pService.getById(productId);
 		Recipe thisRecipe = rService.getById(id);
 		this.rService.addProductToRecipe(productToAdd, thisRecipe);
+		this.iService.createEntry(thisRecipe, productToAdd, amountInput);
 		return "redirect:/toolbox/recipe/adding/"+thisRecipe.getId();
 	}
 	@GetMapping("/{rId}/{pId}/removeproduct")
@@ -74,13 +75,15 @@ public class RecipeController {
 		Product productToRemove = this.pService.getById(productId);
 		Recipe thisRecipe = rService.getById(recipeId);
 		this.rService.removeProductFromRecipe(productToRemove, thisRecipe);
+		this.iService.deleteEntry(thisRecipe, productToRemove);
 		return "redirect:/adding/"+productId;
 	}
 	@PostMapping("edit/adding/{id}")
-	public String ProductToRecipe(@RequestParam("product")Long productId, @PathVariable("id")Long id) {
+	public String ProductToRecipe(@RequestParam("product")Long productId,@RequestParam("amount")double amountInput, @PathVariable("id")Long id) {
 		Product productToAdd= this.pService.getById(productId);
 		Recipe thisRecipe = rService.getById(id);
 		this.rService.addProductToRecipe(productToAdd, thisRecipe);
+		this.iService.createEntry(thisRecipe, productToAdd, amountInput);
 		return "redirect:/toolbox/recipe/edit/"+thisRecipe.getId();
 	}
 	@GetMapping("edit/{rId}/{pId}/removeproduct")
@@ -88,6 +91,7 @@ public class RecipeController {
 		Product productToRemove = this.pService.getById(productId);
 		Recipe thisRecipe = rService.getById(recipeId);
 		this.rService.removeProductFromRecipe(productToRemove, thisRecipe);
+		this.iService.deleteEntry(thisRecipe, productToRemove);
 		return "redirect:/toolbox/recipe/edit/"+thisRecipe.getId();
 		}
 	@GetMapping("/delete/{id}")
@@ -96,7 +100,7 @@ public class RecipeController {
 		return "redirect:/toolbox/recipe/";
 	}
 	@GetMapping("/edit/{id}")
-	public String showRecipe(@ModelAttribute("recipe")Recipe recipeInput, BindingResult result, @PathVariable("id")Long id, Model viewModel) {
+	public String showRecipe( @PathVariable("id")Long id, Model viewModel) {
 		Recipe thisRecipe = rService.getById(id);
 		List<Product> thisRecipesProducts = thisRecipe.getProductsinRec();
 		List<Product> others = rService.findProductsNotInRecipe(thisRecipe);
@@ -106,45 +110,44 @@ public class RecipeController {
 		return "recipeEdit.jsp";
 	}
 	@PostMapping("/edit/{id}")
-	public String editRecipe(@Valid @ModelAttribute("recipe")Recipe recipeInput, BindingResult result, @PathVariable("id")Long id, Model viewModel) {
+	public String editRecipe(@RequestParam("costPercentage")float costPercentage,@RequestParam("serving")float serving,@RequestParam("unitOfMeasure")String UoM,@RequestParam("yield")float yield,@RequestParam("name")String name,@PathVariable("id")Long id, Model viewModel) {
 		Recipe thisRecipe = rService.getById(id);
 		List<Product> thisRecipesProducts = thisRecipe.getProductsinRec();
 		List<Product> others = rService.findProductsNotInRecipe(thisRecipe);
 		viewModel.addAttribute("productsIn", thisRecipesProducts);
 		viewModel.addAttribute("recipe", thisRecipe);
 		viewModel.addAttribute("productsNotIn", others);
-		if (result.hasErrors()) {
-			viewModel.addAttribute("productsIn", thisRecipesProducts);
-			viewModel.addAttribute("recipe", thisRecipe);
-			viewModel.addAttribute("productsNotIn", others);
-			return "recipeEdit.jsp";
-		}
-		this.rService.updateEntry(recipeInput);
+		
+		this.rService.updateEntry(id, name, yield, UoM, serving, costPercentage, thisRecipesProducts);
 		return "redirect:/toolbox/recipe/";
 	}
 	@GetMapping("/show/{id}")
 	public String showRecipe( @ModelAttribute("ingredient")Ingredient ingredientInput,@PathVariable("id")Long id, Model viewModel) {
 		Recipe currentRecipe = this.rService.getById(id);
 		List<Product> products = this.rService.getProductsInRecipe(currentRecipe);
-		
+		List<Ingredient> ingredients = this.iService.ingredientsInRecipe(currentRecipe);
+		double batchCost = this.rService.ingredientsInRecipeAmountSum(currentRecipe);
+		viewModel.addAttribute("batchCost", batchCost);
+		viewModel.addAttribute("ingredients", ingredients);
 		viewModel.addAttribute("recipe", currentRecipe);
 		viewModel.addAttribute("products", products);
 		
 		return "recipeShow.jsp";
 	}
 	@PostMapping("/show/{id}")
-	public String addAmount(@Valid @ModelAttribute("ingredient")Ingredient ingredientInput, BindingResult result, @PathVariable("id")Long recipeid, Model viewModel) {
+	public String addAmount(@RequestParam("ingredient")Long ingredientId,@RequestParam("amount")double amountInput, @PathVariable("id")Long recipeid, Model viewModel) {
 		Recipe currentRecipe = this.rService.getById(recipeid);
 		List<Product> products = this.rService.getProductsInRecipe(currentRecipe);
+		List<Ingredient> ingredients = this.iService.ingredientsInRecipe(currentRecipe);
+		double batchCost = this.rService.ingredientsInRecipeAmountSum(currentRecipe);
+		viewModel.addAttribute("batchCost", batchCost);
+		viewModel.addAttribute("ingredients", ingredients);
 		viewModel.addAttribute("recipe", currentRecipe);
 		viewModel.addAttribute("products", products);
-		if (result.hasErrors()) {
-			viewModel.addAttribute("recipe", currentRecipe);
-			viewModel.addAttribute("products", products);
-			return "recipeShow.jsp";
-		}
-		Ingredient newEntry = this.iService.createEntry(ingredientInput);
-		newEntry.setRecipe(currentRecipe);
+		Ingredient thisIngProd = this.iService.getById(ingredientId);
+		Product productInput = thisIngProd.getProduct();
+		this.iService.updateEntry(ingredientId,currentRecipe,productInput, amountInput);
 		return "redirect:/toolbox/recipe/show/"+currentRecipe.getId();
 	}
+
 }

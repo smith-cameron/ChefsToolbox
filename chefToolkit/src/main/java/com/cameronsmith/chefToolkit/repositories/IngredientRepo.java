@@ -12,4 +12,5 @@ import com.cameronsmith.chefToolkit.models.Recipe;
 public interface IngredientRepo extends CrudRepository<Ingredient, Long>{
 	List<Ingredient> findAll();
 	List<Ingredient> findByRecipe(Recipe recipe);
+	Ingredient findByRecipeIdAndProductId(Long recipeId, Long productId);
 }

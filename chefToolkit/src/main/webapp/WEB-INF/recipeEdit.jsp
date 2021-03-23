@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Welcome!</title>
+<title>Chefs Toolkit</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -16,38 +16,33 @@
 	<t:wrapper>
 		<h1 id="head">Adjust ${recipe.name}</h1>
 		<div id="formDiv">
-		<form:form action="/toolbox/recipe/edit/${recipe.id}" method="post" modelAttribute="recipe">
-				<form:errors class="validations" path="name"/>
+		<form action="/toolbox/recipe/edit/${recipe.id}" method="post">
 			<div class="formGroup">
-				<form:label path="name">Name:</form:label>
-				<form:input class="formInput" path="name"/>
+				<label >Name:</label>
+				<input class="formInput" name="name" value="${recipe.name}"/>
 			</div>
-				<form:errors class="validations" path="yield"/>
 			<div class="formGroup">
-				<form:label path="yield">Yield:</form:label>
-				<form:input class="formInput" path="yield"/>
+				<label >Yield:</label>
+				<input class="formInput" name="yield" value="${recipe.yield}"/>
 			</div>
-			<form:errors class="validations" path="unitOfMeasure"/>
 			<div class="formGroup">
-				<form:label path="unitOfMeasure">Unit Of Measure:</form:label>
-				<form:select class="formInput" path="unitOfMeasure">
-					<form:option value="oz">oz</form:option>
-					<form:option value="floz">floz</form:option>
-					<form:option value="ea">ea</form:option>
-				</form:select>
+				<label >Unit Of Measure:</label>
+				<select class="formInput" name="unitOfMeasure" >
+					<option value="oz">oz</option>
+					<option value="floz">floz</option>
+					<option value="ea">ea</option>
+				</select>
 			</div>
-				<form:errors class="validations" path="serving"/>
 			<div class="formGroup">
-				<form:label path="serving">Serving Size:</form:label>
-				<form:input class="formInput" path="serving"/>
+				<label >Serving Size:</label>
+				<input class="formInput" name="serving" value="${recipe.serving}"/>
 			</div>
-				<form:errors class="validations" path="costPercentage"/>
 			<div class="formGroup">
-				<form:label path="costPercentage">Cost %(as decimal):</form:label>
-				<form:input class="formInput" path="costPercentage"/>
+				<label >Cost %(as decimal):</label>
+				<input class="formInput" name="costPercentage" value="${recipe.costPercentage}"/>
 			</div>
 			<input class="button" type="submit" value="Update">
-		</form:form>
+		</form>
 		</div>
 		<div class="recByProd1">
 		<table>
@@ -60,8 +55,8 @@
 		<tbody>
 			<c:forEach items="${productsIn}" var="product">
 			<tr>
-				<td><a class="link" href="/toolbox/product/edit/${product.id}">${product.name}</a></td>
-				<td><a class="link" href="/toolbox/recipe/edit/${recipe.id}/${product.id}/removeproduct">Remove</a></td>
+				<td><a class="link" href="/toolbox/recipe/edit/${product.id}">${product.name}</a></td>
+				<td><a class="link" href="/toolbox/recipe/edit//${recipe.id}/${product.id}/removeproduct">Remove</a></td>
 			</tr>
 			</c:forEach>
 		</tbody>
@@ -77,6 +72,7 @@
 						<option value="${product.id}">${product.name}</option>
 					</c:forEach>
 				</select>
+				<input type="hidden" name="amount" value="${0.0}"></input>
 				</div>
 				<div class="formDiv">
 				<input id="button" type="submit" value="Add"/>

@@ -30,4 +30,6 @@ public class ProductService {
 		List<Recipe> recipes = this.getById(id).getRecipes();
 		return recipes;
 	}
+	
+	
 }
